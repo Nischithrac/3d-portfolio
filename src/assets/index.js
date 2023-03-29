@@ -27,10 +27,12 @@ import meta from "./company/meta.png";
 import shopify from "./company/shopify.png";
 import starbucks from "./company/starbucks.png";
 import tesla from "./company/tesla.png";
+import igirder from './company/igirder.png'
+import mad from './company/MAD.png'
 
-import carrent from "./carrent.png";
-import jobit from "./jobit.png";
-import tripguide from "./tripguide.png";
+import bankApp from "./tech/Modern-Bank.png";
+import youtube from "./tech/YouTube-clone.png";
+import nftverse from "./tech/nftverse.png";
 
 export {
   logo,
@@ -56,10 +58,12 @@ export {
   typescript,
   threejs,
   meta,
+  igirder,
+  mad,
   shopify,
   starbucks,
   tesla,
-  carrent,
-  jobit,
-  tripguide,
+  bankApp,
+  youtube,
+  nftverse
 };

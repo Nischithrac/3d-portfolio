@@ -16,10 +16,44 @@ const Contact = () => {
     message: "",
   });
 
+
   const [loading, setLoading] = useState(false);
 
-  const handleChange = (e) => {};
-  const handleSubmit = (e) => {};
+  const handleChange = (e) => {
+    const {name, value} = e.target;
+
+    setForm({...form, [name]: value})
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setLoading(true)
+
+    emailjs.send('service_avpqk0f', 'template_pn42fpg', {
+        from_name: form.name,
+        to_name: 'sharan',
+        from_email: form.email, 
+        to_email: "sharanvkt.k@gmail.com",
+        message: form.message
+    },
+    '9UcPV2rZVdBeuO-uX'
+    )
+    .then(()=>{
+      setLoading(false)
+      alert(`Thank you. I'll get back to you as soon as possible :)`)
+
+      setForm({
+        name:"",
+        email: "",
+        message:"",
+      }, (error)=>{
+        setLoading(false)
+
+        console.log(error)
+
+        alert("Something went wrong.")
+      })
+    })
+  };
 
   return (
     <div className="xl:mt-12 xl:flex-row flex-col-reverse flex gap-10 overflow-hidden">
@@ -64,7 +98,7 @@ const Contact = () => {
               name="message"
               value={form.message}
               onChange={handleChange}
-              placeholder="Hey there!
+              placeholder="Hi Sharan!
 
 I just checked out your portfolio and I'm blown away by your experience and the projects you've worked on! I'd love to discuss collaborating on a project with you.
 

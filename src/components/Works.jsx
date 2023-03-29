@@ -15,6 +15,7 @@ const ProjectCard = ({
   tags,
   image,
   source_code_link,
+  project_live_link
 }) => {
   return (
     <motion.div variants={fadeIn("up", "spring", index * 0.5, 0.75)}>
@@ -45,7 +46,7 @@ const ProjectCard = ({
             </div>
 
             <div
-              onClick={() => window.open(source_code_link, "_blank")}
+              onClick={() => window.open(project_live_link, "_blank")}
               className="green-pink-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer ml-[5px]"
             >
               <img

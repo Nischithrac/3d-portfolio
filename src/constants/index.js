@@ -15,9 +15,9 @@ import {
     git,
     figma,
     docker,
-    meta,
-    starbucks,
+    meta,  
     tesla,
+    starbucks,
     shopify,
     carrent,
     jobit,
@@ -96,8 +96,8 @@ import {
   
   const experiences = [
     {
-      title: "React.js Developer",
-      company_name: "Starbucks",
+      title: "Web design & development",
+      company_name: "iGirder Infrastructure development Pvt. Ltd",
       icon: starbucks,
       iconBg: "#383E56",
       date: "March 2020 - April 2021",

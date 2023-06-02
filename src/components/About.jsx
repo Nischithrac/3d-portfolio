@@ -43,7 +43,7 @@ const About = () => {
       >
         Hello! I'm a Full-Stack Developer with a passion for creating visually
         appealing, Seamless and user-friendly websites. I have experience in JavaScript,
-        HTML, CSS, React, Node, Tailwind, and MangoDB, and I'm always looking for
+        HTML, CSS, React, Node, Tailwind, and MongoDB, and I'm always looking for
         new ways to push the limits of what's possible on the web. Let's team up
         and make something amazing!
       </motion.p>

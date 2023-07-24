@@ -41,9 +41,9 @@ const About = () => {
         variants={fadeIn("", "", 0.1, 1)}
         className="mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]"
       >
-        Hello! I'm a Frontend Developer with a passion for creating visually
-        appealing and user-friendly websites. I have experience in JavaScript,
-        HTML, CSS, React, Tailwind, and Material UI, and I'm always looking for
+        Hello! I'm a Full-Stack Developer with a passion for creating visually
+        appealing, Seamless and user-friendly websites. I have experience in JavaScript,
+        HTML, CSS, React, Node, Tailwind, and MongoDB, and I'm always looking for
         new ways to push the limits of what's possible on the web. Let's team up
         and make something amazing!
       </motion.p>

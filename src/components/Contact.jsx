@@ -16,43 +16,74 @@ const Contact = () => {
     message: "",
   });
 
+  const [formErrors, setFormErrors] = useState({});
 
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
-    const {name, value} = e.target;
+    const { name, value } = e.target;
 
-    setForm({...form, [name]: value})
+    setForm({ ...form, [name]: value });
+    setFormErrors({ ...formErrors, [name]: "" }); // Clear validation errors on change
   };
+
+  const validateForm = () => {
+    const errors = {};
+
+    if (!form.name.trim()) {
+      errors.name = "Name is required";
+    }
+
+    if (!form.email.trim()) {
+      errors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(form.email)) {
+      errors.email = "Invalid email address";
+    }
+
+    if (!form.message.trim()) {
+      errors.message = "Message is required";
+    }
+
+    setFormErrors(errors);
+
+    return Object.keys(errors).length === 0;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true)
 
-    emailjs.send('service_avpqk0f', 'template_pn42fpg', {
-        from_name: form.name,
-        to_name: 'sharan',
-        from_email: form.email, 
-        to_email: "sharanvkt.k@gmail.com",
-        message: form.message
-    },
-    '9UcPV2rZVdBeuO-uX'
-    )
-    .then(()=>{
-      setLoading(false)
-      alert(`Thank you. I'll get back to you as soon as possible :)`)
+    if (validateForm()) {
+      setLoading(true);
 
-      setForm({
-        name:"",
-        email: "",
-        message:"",
-      }, (error)=>{
-        setLoading(false)
+      emailjs
+        .send(
+          "service_avpqk0f",
+          "template_pn42fpg",
+          {
+            from_name: form.name,
+            to_name: "sharan",
+            from_email: form.email,
+            to_email: "sharanvkt.k@gmail.com",
+            message: form.message,
+          },
+          "9UcPV2rZVdBeuO-uX"
+        )
+        .then(() => {
+          setLoading(false);
+          alert(`Thank you. I'll get back to you as soon as possible :)`);
 
-        console.log(error)
-
-        alert("Something went wrong.")
-      })
-    })
+          setForm({
+            name: "",
+            email: "",
+            message: "",
+          });
+        })
+        .catch((error) => {
+          setLoading(false);
+          console.log(error);
+          alert("Something went wrong.");
+        });
+    }
   };
 
   return (
@@ -79,7 +110,9 @@ const Contact = () => {
               placeholder="What's your name?"
               className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
             />
+            {formErrors.name && <span className="text-red-500">{formErrors.name}</span>}
           </label>
+
           <label className="flex flex-col">
             <span className="text-white font-medium mb-4">Your Email</span>
             <input
@@ -90,7 +123,9 @@ const Contact = () => {
               placeholder="What's your email?"
               className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
             />
+            {formErrors.email && <span className="text-red-500">{formErrors.email}</span>}
           </label>
+
           <label className="flex flex-col">
             <span className="text-white font-medium mb-4">Your Message</span>
             <textarea
@@ -107,12 +142,14 @@ Let me know if you're available to chat sometime this week.
 Cheers!"
               className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
             />
+            {formErrors.message && <span className="text-red-500">{formErrors.message}</span>}
           </label>
+
           <button
             type="submit"
             className="bg-tertiary py-3 px-8  outlinnone w-fit text-white font-bold shadow-md shadow-primary rounded-xl ml-auto"
           >
-            {loading ? "sending.." : "send"}
+            {loading ? "Sending..." : "Send"}
           </button>
         </form>
       </motion.div>
@@ -121,7 +158,7 @@ Cheers!"
         variants={slideIn("right", "tween", 0.2, 1)}
         className="xl:flex-1  xl:h-auto md:h-[550px] h-[350px]"
       >
-        <EarthCanvas  />
+        <EarthCanvas />
       </motion.div>
     </div>
   );
